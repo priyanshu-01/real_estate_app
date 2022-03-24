@@ -71,6 +71,18 @@ class LandingPage extends StatelessWidget {
             // ChoiceOption -> Row -> SingleChildScrollView (axis horizontal)
 
             addVerticalSpace(10),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  itemCount: RE_DATA.length,
+                  itemBuilder: (context, index) {
+                    return RealEstateItem(itemData: RE_DATA[index]);
+                  },
+                ),
+              ),
+            ),
+
             // ListView.builder (itemCount : RE_DATA.length, itemBuilder : RealEstateItem(itemData: RE_DATA[index]),   -> Padding -> Expanded                   ) )
           ],
         ),
