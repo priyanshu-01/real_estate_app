@@ -26,8 +26,8 @@ class LandingPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.menu),
-                  Icon(Icons.settings),
+                  BorderIcon(child: Icon(Icons.menu)),
+                  BorderIcon(child: Icon(Icons.settings)),
                 ],
               ),
             ),
@@ -102,6 +102,11 @@ class RealEstateItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // push details page with item data
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return DetailPage(itemData: itemData);
+          },
+        ));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20),
@@ -110,9 +115,17 @@ class RealEstateItem extends StatelessWidget {
           children: [
             Stack(
               children: [
-                FlutterLogo(),
+                // FlutterLogo(),
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Image.asset(itemData["image"])),
                 // use Image.asset()- itemData["image"] as image path, ClipRRect - radius 25
                 // favorite_border icon, inside positioned widget
+                Positioned(
+                  top: 15.0,
+                  right: 15.0,
+                  child: BorderIcon(child: Icon(Icons.favorite_border)),
+                ),
               ],
             ),
             addVerticalSpace(15),
